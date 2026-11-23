@@ -1,0 +1,7 @@
+/node_modules
+/dist
+/out-tsc
+/.angular/cache
+/coverage
+.env.development.local
+.env.production.local
