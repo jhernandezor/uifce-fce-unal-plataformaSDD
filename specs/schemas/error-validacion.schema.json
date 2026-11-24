@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://uifce.fce.unal.edu.co/specs/schemas/error-validacion.schema.json",
+  "title": "Error Validacion Dominio UIFCE - FCE UNAL",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "campo",
+    "codigo",
+    "mensaje",
+    "severidad"
+  ],
+  "properties": {
+    "campo": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 80
+    },
+    "codigo": {
+      "type": "string",
+      "enum": [
+        "DOMINIO_CORREO_NO_PERMITIDO",
+        "FORMATO_CODIGO_UNAL_INVALIDO",
+        "FORMATO_NOMBRE_INVALIDO",
+        "FORMATO_TELEFONO_EXTENSION_INVALIDO",
+        "FORMATO_PLACA_UNAL_INVALIDO",
+        "TRANSICION_FSM_INVALIDA",
+        "CAMPO_REQUERIDO"
+      ]
+    },
+    "mensaje": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 300
+    },
+    "severidad": {
+      "type": "string",
+      "enum": ["error", "advertencia"]
+    }
+  }
+}
