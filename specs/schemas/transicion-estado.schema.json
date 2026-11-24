@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://uifce.fce.unal.edu.co/specs/schemas/transicion-estado.schema.json",
+  "title": "Transicion Estado Solicitud UIFCE - FCE UNAL",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "solicitudId",
+    "estadoActual",
+    "estadoDestino",
+    "actorEmail",
+    "motivo",
+    "timestamp"
+  ],
+  "properties": {
+    "solicitudId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "estadoActual": {
+      "type": "string",
+      "enum": [
+        "pendiente",
+        "en_proceso",
+        "en_espera_usuario",
+        "resuelta",
+        "cerrada",
+        "rechazada"
+      ]
+    },
+    "estadoDestino": {
+      "type": "string",
+      "enum": [
+        "pendiente",
+        "en_proceso",
+        "en_espera_usuario",
+        "resuelta",
+        "cerrada",
+        "rechazada"
+      ]
+    },
+    "actorEmail": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9._%+-]+@unal\\.edu\\.co$"
+    },
+    "motivo": {
+      "type": "string",
+      "minLength": 5,
+      "maxLength": 500
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}
