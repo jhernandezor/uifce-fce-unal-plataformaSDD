@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://uifce.fce.unal.edu.co/specs/schemas/auditoria-evento.schema.json",
+  "title": "Auditoria Evento Dominio UIFCE - FCE UNAL",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "entidadTipo",
+    "entidadId",
+    "accion",
+    "actorEmail",
+    "actorRol",
+    "ocurridoEn"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "entidadTipo": {
+      "type": "string",
+      "enum": ["solicitud", "equipo", "usuario"]
+    },
+    "entidadId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "accion": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 120
+    },
+    "actorEmail": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9._%+-]+@unal\\.edu\\.co$"
+    },
+    "actorRol": {
+      "type": "string",
+      "enum": ["solicitante", "tecnico_uifce", "admin_uifce"]
+    },
+    "ocurridoEn": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}
