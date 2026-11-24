@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://uifce.fce.unal.edu.co/specs/schemas/solicitud.schema.json",
+  "title": "Solicitud UIFCE - FCE UNAL",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "radicado",
+    "tipo",
+    "solicitanteEmail",
+    "codigoUnal",
+    "nombreCompleto",
+    "telefonoOExtension",
+    "descripcion",
+    "estado",
+    "creadoEn",
+    "actualizadoEn"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "radicado": {
+      "type": "string",
+      "pattern": "^UIFCE-2026-[0-9]{5}$"
+    },
+    "tipo": {
+      "type": "string",
+      "enum": ["soporte", "videoproyector", "evento"]
+    },
+    "solicitanteEmail": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9._%+-]+@unal\\.edu\\.co$"
+    },
+    "codigoUnal": {
+      "type": "string",
+      "pattern": "^[0-9]{6,12}$"
+    },
+    "nombreCompleto": {
+      "type": "string",
+      "pattern": "^[A-Za-zÁÉÍÓÚáéíóúÑñÜü ]{2,150}$"
+    },
+    "telefonoOExtension": {
+      "type": "string",
+      "pattern": "^([0-9]{5}|[0-9]{7,10})$"
+    },
+    "descripcion": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 2000
+    },
+    "estado": {
+      "type": "string",
+      "enum": [
+        "pendiente",
+        "en_proceso",
+        "en_espera_usuario",
+        "resuelta",
+        "cerrada",
+        "rechazada"
+      ]
+    },
+    "creadoEn": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "actualizadoEn": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}
