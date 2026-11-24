@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://uifce.fce.unal.edu.co/specs/schemas/historial-estado.schema.json",
+  "title": "Historial Estado Solicitud UIFCE - FCE UNAL",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "solicitudId",
+    "estadoAnterior",
+    "estadoNuevo",
+    "comentario",
+    "cambiadoPorEmail",
+    "registradoEn"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "solicitudId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "estadoAnterior": {
+      "type": ["string", "null"],
+      "enum": [
+        null,
+        "pendiente",
+        "en_proceso",
+        "en_espera_usuario",
+        "resuelta",
+        "cerrada",
+        "rechazada"
+      ]
+    },
+    "estadoNuevo": {
+      "type": "string",
+      "enum": [
+        "pendiente",
+        "en_proceso",
+        "en_espera_usuario",
+        "resuelta",
+        "cerrada",
+        "rechazada"
+      ]
+    },
+    "comentario": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 1000
+    },
+    "cambiadoPorEmail": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9._%+-]+@unal\\.edu\\.co$"
+    },
+    "registradoEn": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}
