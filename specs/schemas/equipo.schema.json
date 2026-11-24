@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://uifce.fce.unal.edu.co/specs/schemas/equipo.schema.json",
+  "title": "Equipo Inventario UIFCE - FCE UNAL",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "placaUnal",
+    "serialFabricante",
+    "categoria",
+    "marca",
+    "modelo",
+    "ubicacionActual",
+    "estadoOperativo",
+    "creadoEn",
+    "actualizadoEn"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "placaUnal": {
+      "type": "string",
+      "pattern": "^UNAL-FCE-2026-[A-Z0-9]{4,8}$"
+    },
+    "serialFabricante": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 100
+    },
+    "categoria": {
+      "type": "string",
+      "enum": ["computo", "videoproyector", "periferico", "red"]
+    },
+    "marca": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 80
+    },
+    "modelo": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100
+    },
+    "ubicacionActual": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 150
+    },
+    "estadoOperativo": {
+      "type": "string",
+      "enum": [
+        "disponible",
+        "prestado",
+        "en_mantenimiento",
+        "dado_de_baja"
+      ]
+    },
+    "creadoEn": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "actualizadoEn": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}
