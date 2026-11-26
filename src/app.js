@@ -4,6 +4,7 @@ import { crearSolicitudService } from './services/solicitudes.service.js';
 import { renderMetricsBar } from './ui/MetricsBar.js';
 import { renderTicketList } from './ui/TicketList.js';
 import { renderTicketForm } from './ui/TicketForm.js';
+import { renderTicketDetailDrawer } from './ui/TicketDetailDrawer.js';
 
 const SEMILLA_SOLICITUDES = [
   {
@@ -26,6 +27,7 @@ const store = createStore({
   solicitudes: cargarSolicitudes(SEMILLA_SOLICITUDES),
   historial: [],
   auditoria: [],
+  solicitudSeleccionadaId: null,
   filtros: {
     texto: '',
     estado: 'todos',
@@ -43,19 +45,26 @@ const elFiltroTexto = document.querySelector('#filtro-texto');
 const elFiltroEstado = document.querySelector('#filtro-estado');
 const elFiltroTipo = document.querySelector('#filtro-tipo');
 
+let elDetalle = document.querySelector('#contenedor-detalle');
+if (!elDetalle && document.body) {
+  elDetalle = document.createElement('div');
+  elDetalle.id = 'contenedor-detalle';
+  document.body.appendChild(elDetalle);
+}
+
 function mostrarMensaje(texto, esError = false) {
   if (!elMensajeOperacion) return;
   elMensajeOperacion.textContent = texto;
   elMensajeOperacion.dataset.tipo = esError ? 'error' : 'exito';
 }
 
-function manejarTransicion({ solicitudId, estadoDestino }) {
+function manejarTransicion({ solicitudId, estadoDestino, motivo }) {
   const resultado = solicitudesService.cambiarEstadoSolicitud({
     solicitudId,
     estadoDestino,
     actorEmail: 'coordinador.uifce@unal.edu.co',
     actorRol: 'tecnico_uifce',
-    motivo: `Transición registrada a estado "${estadoDestino}" desde el panel`
+    motivo: motivo || `Transición registrada a estado "${estadoDestino}" desde el panel`
   });
 
   if (!resultado.ok) {
@@ -68,10 +77,32 @@ function manejarTransicion({ solicitudId, estadoDestino }) {
 
 function renderizarTodo(estado) {
   renderMetricsBar(elMetricas, estado.solicitudes);
+
   renderTicketList(elListado, {
     solicitudes: estado.solicitudes,
     filtros: estado.filtros,
     onTransicion: manejarTransicion
+  });
+
+  elListado?.querySelectorAll('.tarjeta-solicitud').forEach((tarjeta) => {
+    tarjeta.addEventListener('click', (evento) => {
+      if (evento.target.closest('.btn-accion-estado')) return;
+      const id = tarjeta.dataset.id;
+      if (id) {
+        store.setState({ solicitudSeleccionadaId: id });
+      }
+    });
+  });
+
+  const seleccionada =
+    estado.solicitudes.find((s) => s.id === estado.solicitudSeleccionadaId) || null;
+
+  renderTicketDetailDrawer(elDetalle, {
+    solicitud: seleccionada,
+    historial: estado.historial,
+    auditoria: estado.auditoria,
+    onCambiarEstado: manejarTransicion,
+    onCerrar: () => store.setState({ solicitudSeleccionadaId: null })
   });
 }
 
