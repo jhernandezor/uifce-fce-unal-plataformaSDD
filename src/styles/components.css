@@ -132,3 +132,52 @@ body {
   background-color: #e0ecf8;
   color: var(--azul-oscuro);
 }
+
+.campo.dirty.invalid input,
+.campo.dirty.invalid textarea,
+.campo.dirty.invalid select {
+  border-color: #d32f2f;
+  background-color: #fff8f8;
+}
+
+.campo.dirty.invalid .mensaje-validacion {
+  color: #b71c1c;
+  font-weight: 600;
+}
+
+.campo.dirty.valid input,
+.campo.dirty.valid textarea {
+  border-color: #2e7d32;
+  background-color: #f6fbf6;
+}
+
+.campo.dirty.valid .mensaje-validacion {
+  color: #1b5e20;
+  font-weight: 600;
+}
+
+.btn-primario:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.sugerencia-ia {
+  color: #134375;
+  font-weight: 500;
+}
+
+.panel-detalle {
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+  border-radius: 10px;
+  border: 1px solid #d0d7de;
+  background: #ffffff;
+}
+
+.cabecera-detalle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
