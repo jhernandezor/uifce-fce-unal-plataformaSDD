@@ -1,0 +1,22 @@
+:root {
+  --font-principal: 'Ancizar Sans', 'Open Sans', 'Roboto', sans-serif;
+
+  --banner-gradiente: linear-gradient(90deg, #4b6b50 0%, #1e4d6b 50%, #4b1e5a 100%);
+  --azul-institucional: #1a528a;
+  --azul-oscuro: #134375;
+  --cta-fondo: #1b365d;
+  --cta-radio: 12px;
+
+  --lienzo-fondo: #dcdcdc;
+  --lienzo-secundario: #e6e6e6;
+  --tarjeta-fondo: #ffffff;
+  --pestana-lima: #94b83d;
+  --accesibilidad-azul: #0066cc;
+
+  --estado-neutro: #cccccc;
+  --estado-error-borde: #d32f2f;
+  --estado-error-fondo: #fff8f8;
+  --estado-valido-borde: #2e7d32;
+
+  --submit-opacidad-disabled: 0.6;
+}
