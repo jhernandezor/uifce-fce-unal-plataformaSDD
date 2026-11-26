@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UIFCE — Facultad de Ciencias Económicas (UNAL)</title>
+  <link rel="stylesheet" href="./src/styles/variables.css" />
+  <link rel="stylesheet" href="./src/styles/components.css" />
+</head>
+<body>
+  <header class="topbar-institucional">
+    <div class="topbar-meta">Universidad Nacional de Colombia · Facultad de Ciencias Económicas</div>
+    <h1>Unidad de Informática — UIFCE</h1>
+    <p>Gestión de solicitudes, soporte técnico, aulas/videoproyectores y apoyo a eventos</p>
+  </header>
+
+  <main class="contenedor-principal">
+    <section class="tarjeta" aria-labelledby="titulo-registro">
+      <h2 id="titulo-registro">Registrar nueva solicitud</h2>
+      <div id="contenedor-formulario"></div>
+    </section>
+
+    <section class="tarjeta" aria-labelledby="titulo-panel">
+      <h2 id="titulo-panel">Panel de seguimiento y métricas</h2>
+
+      <div id="contenedor-metricas"></div>
+
+      <div class="barra-filtros" aria-label="Filtros de solicitudes">
+        <div class="campo">
+          <label for="filtro-texto">Buscar por radicado, descripción o correo</label>
+          <input id="filtro-texto" type="search" placeholder="Ej. UIFCE-2026 o @unal.edu.co" />
+        </div>
+
+        <div class="campo">
+          <label for="filtro-estado">Estado</label>
+          <select id="filtro-estado">
+            <option value="todos">Todos los estados</option>
+            <option value="pendiente">Pendiente</option>
+            <option value="en_proceso">En proceso</option>
+            <option value="en_espera_usuario">En espera usuario</option>
+            <option value="resuelta">Resuelta</option>
+            <option value="rechazada">Rechazada</option>
+            <option value="cerrada">Cerrada</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="filtro-tipo">Tipo</label>
+          <select id="filtro-tipo">
+            <option value="todos">Todos los tipos</option>
+            <option value="soporte">Soporte técnico</option>
+            <option value="videoproyector">Videoproyector / Aula</option>
+            <option value="evento">Apoyo a evento</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="mensaje-operacion" role="status" aria-live="polite"></div>
+      <div id="contenedor-listado"></div>
+    </section>
+  </main>
+
+  <script type="module" src="./src/app.js"></script>
+</body>
+</html>
